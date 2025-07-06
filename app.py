@@ -6,5 +6,11 @@ app = Flask(__name__)
 def hello_world():
     return "<p>Hello, World!</p>"
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
+from markupsafe import escape
+
+@app.route("/<name>")
+def hello(name):
+    return f"Hello, {escape(name)}!"
+
+if __name__ == "__main__":
+    app.run(debug=True)
